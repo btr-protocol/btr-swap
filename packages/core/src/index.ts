@@ -1,4 +1,5 @@
 import { BaseAggregator } from "./abstract";
+import { btrDexAggregator } from "./BtrDex";
 import config from "./config";
 import { aggregatorsWithContractCalls, defaultAggregators, MAX_SLIPPAGE_BPS } from "./constants";
 import { firebirdAggregator } from "./Firebird";
@@ -49,6 +50,9 @@ export const aggregatorById: Partial<{ [key in AggId]: BaseAggregator }> = {
   [AggId.ODOS]: odosAggregator,
   [AggId.FIREBIRD]: firebirdAggregator,
   [AggId.OPENOCEAN]: openOceanAggregator,
+
+  // On-chain (native BTR DEX router) — no external API
+  [AggId.BTR_DEX]: btrDexAggregator,
 };
 
 /**

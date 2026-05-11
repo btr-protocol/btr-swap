@@ -32,6 +32,9 @@ export enum AggId {
   ONE_INCH_FUSION = "ONE_INCH_FUSION",
   PARASWAP_DELTA = "PARASWAP_DELTA",
   UNIZEN_GASLESS = "UNIZEN_GASLESS",
+
+  // On-chain (no external API) — native BTR DEX router
+  BTR_DEX = "BTR_DEX",
 }
 
 /** Supported blockchain types. */
@@ -216,12 +219,21 @@ export interface ISwapStep {
   estimates?: ISwapEstimate & ICostEstimate;
 }
 
+/** Discriminator for route execution model.
+ * - `atomic`: traditional swap/bridge calldata signed and broadcast by the user.
+ * - `intent`: gasless / off-chain signed order (e.g. CoW, 1inch Fusion, LiFi Intents,
+ *   Unizen Cross-chain Intent, Squid X-Chain v2 intents, Rango intents).
+ */
+export type RouteKind = "atomic" | "intent";
+
 /** Extends the base TransactionRequest with swap-specific estimates and details. */
 export interface ITransactionRequestWithEstimate extends TransactionRequest {
   params: IBtrSwapParams;
   steps: ISwapStep[]; // should at least have one step
   globalEstimates: ISwapEstimate & ICostEstimate; // if one step, this is the step's estimates
   latencyMs: number; // Response time from the aggregator in milliseconds
+  /** Optional route execution kind. Defaults to "atomic" when omitted (back-compat). */
+  kind?: RouteKind;
 }
 
 /** Performance metrics for a quote/transaction request. */
