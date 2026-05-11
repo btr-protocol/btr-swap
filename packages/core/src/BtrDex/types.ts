@@ -91,4 +91,28 @@ export interface IBtrDexCustomData {
   pool?: string;
   /** Permit / Permit2 signature for tokenIn. Optional. */
   permit?: BtrDexPermit;
+  /**
+   * If true, the caller expects tokenIn to be pre-authorized via Permit2 and
+   * the on-chain Router to short-circuit ERC-20 `transferFrom`.
+   *
+   * TODO Phase 42K: Router.executeSwap does not currently accept a Permit2
+   * payload on-chain — this flag is wired through the SDK surface ahead of the
+   * on-chain rollout. With `usePermit2=true` today, the generated calldata is
+   * identical and the caller is responsible for issuing the Permit2 approval
+   * out-of-band (or for the SDK consumer to attach a permit signature in a
+   * follow-up phase once the Router signature is finalised).
+   */
+  usePermit2?: boolean;
+  /** Caller-provided minimum output (wei). When supplied, overrides aggregator-side slippage math. */
+  minOut?: bigint | string;
+}
+
+/** Per-chain BtrDex on-chain deployment addresses. */
+export interface IBtrDexChainConfig {
+  /** `Router` proxy address. */
+  router: string;
+  /** `PoolFactory` address (used for `getCommonPools` discovery). */
+  poolFactory: string;
+  /** JSON-RPC URL for `eth_call`. Falls back to `BTR_DEX_RPC_<chainId>` env. */
+  rpcUrl?: string;
 }
