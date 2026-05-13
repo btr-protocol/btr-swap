@@ -1,7 +1,14 @@
 import { BaseAggregator } from "./abstract";
 import { btrDexAggregator } from "./BtrDex";
 import config from "./config";
-import { aggregatorsWithContractCalls, defaultAggregators, MAX_SLIPPAGE_BPS } from "./constants";
+import {
+  addresses,
+  aggregatorsWithContractCalls,
+  defaultAggregators,
+  MAX_SLIPPAGE_BPS,
+  nativeTokenAddress,
+  zeroAddress,
+} from "./constants";
 import { firebirdAggregator } from "./Firebird";
 import { kyberSwapAggregator } from "./KyberSwap";
 import { lifiAggregator } from "./LiFi";
@@ -135,6 +142,7 @@ export const getBestTransactionRequest = async (
 
 // Export types and functions needed by the CLI and other consumers
 export {
+  addresses,
   compactTrs,
   config,
   defaultAggregators,
@@ -143,10 +151,12 @@ export {
   getPerformance,
   getPerformanceTable,
   MAX_SLIPPAGE_BPS,
+  nativeTokenAddress,
   SerializationMode,
   serialize,
   toJSON,
   AggId,
+  zeroAddress,
 };
 export type { IBtrSwapCliParams, IBtrSwapParams, ITransactionRequestWithEstimate };
 

@@ -5,6 +5,13 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 
 NB: [Auto-generated from commits](./scripts/release.js) - DO NOT EDIT.
 
+## [1.44.2] - 2026-05-13
+
+### Features
+
+- feat(constants): re-export addresses / nativeTokenAddress / zeroAddress
+  from package root for back-end consumers.
+
 ## [1.44.1] - 2026-05-13
 
 ### Features
