@@ -56,7 +56,7 @@ export interface IBtrDexCandidate {
  * - `eip2612`: EIP-2612 `permit(owner, spender, value, deadline, v, r, s)` on the input token itself.
  * - `permit2`: Uniswap Permit2 `permitTransferFrom` signed payload.
  *
- * @see Phase 42J Team B finding F-permit2 — required for 0x v2 Settler-style listings.
+ * @see Phase 42J Team B finding F-permit2 -required for 0x v2 Settler-style listings.
  *
  * NOTE: Router-side support is **not yet wired** in `dex/evm/src/Router.sol`. This typing
  * defines the integration surface so that consumers (front, back) can begin signing flows
@@ -96,7 +96,7 @@ export interface IBtrDexCustomData {
    * the on-chain Router to short-circuit ERC-20 `transferFrom`.
    *
    * TODO Phase 42K: Router.executeSwap does not currently accept a Permit2
-   * payload on-chain — this flag is wired through the SDK surface ahead of the
+   * payload on-chain -this flag is wired through the SDK surface ahead of the
    * on-chain rollout. With `usePermit2=true` today, the generated calldata is
    * identical and the caller is responsible for issuing the Permit2 approval
    * out-of-band (or for the SDK consumer to attach a permit signature in a

@@ -99,7 +99,10 @@ export const encExecuteSwap = (
   recipient: string,
 ): string => {
   const stepsBody = steps
-    .map((s) => encAddress(s.pool) + encAddress(s.tokenIn) + encAddress(s.tokenOut) + encUint(s.minOut))
+    .map(
+      (s) =>
+        encAddress(s.pool) + encAddress(s.tokenIn) + encAddress(s.tokenOut) + encUint(s.minOut),
+    )
     .join("");
 
   const routeTuple =
@@ -145,7 +148,7 @@ export const decAddressArray = (hex: string): string[] => {
  *
  * The struct is statically-laid-out for its head: `amountOut` is at byte 0.
  * (Dynamic fields like `routeHops`/`hopAmounts`/`hopPrices` come later via
- * offsets — we ignore them at the aggregator layer.)
+ * offsets -we ignore them at the aggregator layer.)
  */
 export const decSwapQuoteAmountOut = (hex: string): bigint => {
   const h = strip0x(hex);
@@ -156,11 +159,7 @@ export const decSwapQuoteAmountOut = (hex: string): bigint => {
 /**
  * Minimal JSON-RPC `eth_call` over `fetch`. Returns the raw hex result.
  */
-export const ethCall = async (
-  rpcUrl: string,
-  to: string,
-  data: string,
-): Promise<string> => {
+export const ethCall = async (rpcUrl: string, to: string, data: string): Promise<string> => {
   const res = await fetch(rpcUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

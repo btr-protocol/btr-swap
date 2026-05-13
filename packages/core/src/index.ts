@@ -51,7 +51,7 @@ export const aggregatorById: Partial<{ [key in AggId]: BaseAggregator }> = {
   [AggId.FIREBIRD]: firebirdAggregator,
   [AggId.OPENOCEAN]: openOceanAggregator,
 
-  // On-chain (native BTR DEX router) — no external API
+  // On-chain (native BTR DEX router) -no external API
   [AggId.BTR_DEX]: btrDexAggregator,
 };
 
@@ -149,3 +149,17 @@ export {
   AggId,
 };
 export type { IBtrSwapCliParams, IBtrSwapParams, ITransactionRequestWithEstimate };
+
+// HTTP wire types + projection helper for BTR swap service consumers
+// (back/services/swap and front/src/lib/api/swap).
+export { trToRoute } from "./http";
+export type {
+  BuildRequest,
+  BuildResponse,
+  ErrorResponse,
+  QuoteRequest,
+  QuoteResponse,
+  QuoteResponseRoute,
+  Route,
+  SwapMode,
+} from "./http";

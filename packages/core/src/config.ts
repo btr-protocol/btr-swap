@@ -70,7 +70,7 @@ const configs: ConfigTuple[] = [
   [Id.PARASWAP_DELTA, "api.paraswap.io"],
   [Id.UNIZEN_GASLESS, "api.zcx.com/trade/v1"],
 
-  // On-chain aggregators (no external HTTP API) — `apiRoot` is a placeholder.
+  // On-chain aggregators (no external HTTP API) -`apiRoot` is a placeholder.
   // RPC endpoints are resolved per-chain via env vars (e.g. `BTR_DEX_RPC_1`).
   [Id.BTR_DEX, "onchain.btr.supply/btrdex"],
 ];

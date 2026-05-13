@@ -5,6 +5,12 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 
 NB: [Auto-generated from commits](./scripts/release.js) - DO NOT EDIT.
 
+## [1.44.1] - 2026-05-13
+
+### Features
+
+- feat(http): add canonical HTTP wire types (QuoteRequest/QuoteResponse/BuildResponse) + trToRoute helper for back-end consumers.
+
 ## [1.44.0] - 2025-04-22
 
 ### Features

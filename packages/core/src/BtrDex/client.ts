@@ -7,11 +7,7 @@ import {
   ethCall,
   IEncRouteStep,
 } from "./abi";
-import {
-  IBtrDexCandidate,
-  IBtrDexChainConfig,
-  IBtrDexCustomData,
-} from "./types";
+import { IBtrDexCandidate, IBtrDexChainConfig, IBtrDexCustomData } from "./types";
 
 import { BaseAggregator } from "../abstract";
 import {
@@ -36,10 +32,10 @@ export type EthCallFn = (rpcUrl: string, to: string, data: string) => Promise<st
  *
  * Pool discovery: `PoolFactory.getCommonPools(tokenA, tokenB)` enumerates
  * shared pools; each candidate is quoted in parallel and the highest output is
- * chosen. Single-hop only — multi-hop deferred until the on-chain
+ * chosen. Single-hop only -multi-hop deferred until the on-chain
  * `getBestRoute` surface stabilises.
  *
- * @see Phase 42J.3b — BtrDex real getQuote + executeSwap (single-hop, Permit2 TODO).
+ * @see Phase 42J.3b -BtrDex real getQuote + executeSwap (single-hop, Permit2 TODO).
  * @see `@btr-protocol/sdk/abis/Router` v0.4.3.
  */
 export class BtrDex extends BaseAggregator {
@@ -194,7 +190,7 @@ export class BtrDex extends BaseAggregator {
    * - DOES NOT trust aggregator-side minOut: caller is expected to provide
    *   one explicitly for production usage.
    * - Permit2: when `customData.usePermit2 === true`, the generated calldata
-   *   is identical (no on-chain support yet — see {@link IBtrDexCustomData}
+   *   is identical (no on-chain support yet -see {@link IBtrDexCustomData}
    *   TODO). The caller is responsible for issuing the Permit2 approval
    *   out-of-band until Phase 42K wires sig verification into the Router.
    */
@@ -217,8 +213,7 @@ export class BtrDex extends BaseAggregator {
       // Caller-provided minOut wins; otherwise derive from quote × slippage.
       const slippageBps = BigInt(p.maxSlippage ?? 500);
       const derivedMinOut = (quote.amountOut * (10000n - slippageBps)) / 10000n;
-      const minOut =
-        custom.minOut !== undefined ? BigInt(custom.minOut.toString()) : derivedMinOut;
+      const minOut = custom.minOut !== undefined ? BigInt(custom.minOut.toString()) : derivedMinOut;
 
       const recipient = p.receiver ?? p.payer;
 
@@ -231,14 +226,14 @@ export class BtrDex extends BaseAggregator {
 
       const calldata = encExecuteSwap(
         [stepIn],
-        quote.amountOut, // amountOut hint (unused by Router on-chain — slippage gate uses minAmountOut)
+        quote.amountOut, // amountOut hint (unused by Router on-chain -slippage gate uses minAmountOut)
         0n, // gasEstimate hint
         quote.amountIn,
         minOut,
         recipient,
       );
 
-      // Native ETH sends — `address(0)` convention.
+      // Native ETH sends -`address(0)` convention.
       const isNativeIn = /^0x0{40}$/i.test(quote.tokenIn.address!);
       const value = isNativeIn ? quote.amountIn.toString() : "0";
 
