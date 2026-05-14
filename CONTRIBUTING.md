@@ -55,13 +55,11 @@ main     ← production-ready, automatic version bump + packaging + release on p
 ## Branch Structure
 
 - **`main`** - Production branch
-
   - Contains stable, released code
   - Automatic version bump + packaging + release creation on `bun run publish:[type]`
   - The `push-tag` script creates a GitHub tag that triggers `.github/workflows/release.yml`
 
 - **`dev`** - Development branch
-
   - Active development happens here
   - Features and fixes are merged into this branch
   - Periodic merges into `main` for releases
@@ -118,7 +116,6 @@ We enforce coding standards through automatic linting and formatting:
 All code changes should include appropriate tests:
 
 - **Unit tests**: `bun run test:unit`
-
   - Fast, focused tests that don't require external services
   - Should be run frequently during development
 
