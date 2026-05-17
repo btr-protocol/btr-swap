@@ -158,7 +158,10 @@ export {
   getIntentChains,
   getIntentRoutes,
   getIntentApiBase,
+  listIntentOrders,
+  orderToWire,
 } from "./LiFi/intent";
+export { encodeInteropAddress, decodeInteropAddress } from "./LiFi/intent-types";
 export type {
   IBtrIntentParams,
   IEIP712TypedData,
@@ -173,6 +176,8 @@ export type {
   ILifiIntentStatusResponse,
   ILifiIntentSubmitRequest,
   ILifiIntentSubmitResponse,
+  ILifiSupportedChain,
+  ILifiSupportedChainsResponse,
   IMandateOutput,
   IntentOrderStatus,
   IntentOrderType,
@@ -181,6 +186,8 @@ export type {
   IntentSwapType,
   IStandardOrder,
   LifiIntentType,
+  OrderStatus,
+  OrderType,
   Hex,
   InteropAddress,
 } from "./LiFi/intent-types";
