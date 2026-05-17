@@ -57,8 +57,8 @@ Options:
   --receiver <address>      Optional. Receiver address (defaults to payer)
   --max-slippage <bps>      Max slippage in bps (default: ${MAX_SLIPPAGE_BPS})
   --aggregators <ids>       Comma-separated AggIds (default: ${defaultAggregators.join(",")})
-  --api-keys <json>         JSON: multiple API keys, e.g. '{"${AggId.RANGO}":"key1"}'
-  --referrer-codes <json>   JSON: referrer codes, e.g. '{"${AggId.RANGO}":"ref1"}'
+  --api-keys <json>         JSON: multiple API keys, e.g. '{"${AggId.LIFI}":"key1"}'
+  --referrer-codes <json>   JSON: referrer codes, e.g. '{"${AggId.LIFI}":"ref1"}'
   --integrator-ids <json>   JSON: integrator IDs, e.g. '{"${AggId.LIFI}":"id1"}'
   --fees-bps <json>         JSON: fee bps, e.g. '{"${AggId.LIFI}":20}'
   --display <modes>         Comma-separated display modes: ${Object.values(DisplayMode).join(",")}
@@ -78,9 +78,9 @@ Example:
     --payer 0x... \\
     --serialization ${SerializationMode.TABLE} \\
     --display ${DisplayMode.RANK},${DisplayMode.ALL_COMPACT} \\
-    --aggregators ${AggId.RANGO},${AggId.LIFI} \\
+    --aggregators ${AggId.LIFI},${AggId.BTR_DEX} \\
     --integrator-ids '{"${AggId.LIFI}":"integrator-id"}' \\
-    --api-keys '{"${AggId.RANGO}":"api-key"}' \\
+    --api-keys '{"${AggId.LIFI}":"api-key"}' \\
     --serialization ${SerializationMode.TABLE}
 `;
 

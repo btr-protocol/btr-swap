@@ -99,7 +99,9 @@ export class LiFi extends BaseAggregator {
    */
   private getHeaders = (): Record<string, string> => ({
     "Content-Type": "application/json",
-    ...(this.apiKey && { "X-API-Key": this.apiKey }),
+    // Li.Fi docs are explicit: lowercase-hyphenated header `x-lifi-api-key`.
+    // Never send key in browser; this is back-end-only by contract (see back/services/swap).
+    ...(this.apiKey && { "x-lifi-api-key": this.apiKey }),
   });
 
   /**
@@ -256,6 +258,9 @@ export class LiFi extends BaseAggregator {
       ...tx,
       params: params,
       steps,
+      // Atomic by default. LiFi Intents go through `LiFi/intent.ts` and emit
+      // `kind: "intent"` from a different code path (back/services/swap).
+      kind: "atomic",
     });
   };
 

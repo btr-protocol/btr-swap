@@ -2,7 +2,7 @@ import { simpleMonoTests } from "./base.test";
 
 import { AggId } from "@/types";
 
-const aggregators = [AggId.UNIZEN, AggId.SOCKET]; // [AggId.LIFI, AggId.RANGO, AggId.UNIZEN, AggId.SOCKET, AggId.SQUID];
+const aggregators = [AggId.LIFI];
 const chainIds = [56]; // [1, 10, 56, 8453, 42161];
 const amountsUSDC = [1000, 100000];
 const amountsWETH = [1, 100];

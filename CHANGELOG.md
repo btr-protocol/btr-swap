@@ -5,6 +5,16 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 
 NB: [Auto-generated from commits](./scripts/release.js) - DO NOT EDIT.
 
+## [2.0.0] - 2026-05-17
+
+### Breaking Changes
+
+- Phase 43: removed 15 legacy aggregators, kept LiFi + BtrDex.
+  Dropped aggregators: AirSwap, CowSwap, Firebird, Hashflow, KyberSwap, Odos,
+  OneInch, OpenOcean, ParaSwap, Rango, RocketX, Socket, Squid, Unizen, ZeroX.
+  Removed corresponding `AggId` enum members and `config.ts` apiRoot entries.
+  Consumers must update `aggIds` to `[AggId.LIFI]` and/or `[AggId.BTR_DEX]`.
+
 ## [1.44.2] - 2026-05-13
 
 ### Features

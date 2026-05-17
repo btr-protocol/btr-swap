@@ -1,15 +1,9 @@
 import { AggId, TokenInfoTuple } from "./types";
 
 /** List of aggregators supporting custom contract calls within a swap route. */
-export const aggregatorsWithContractCalls = [AggId.LIFI, AggId.SOCKET, AggId.SQUID];
+export const aggregatorsWithContractCalls = [AggId.LIFI];
 /** Default list of aggregators to query when none are specified and no custom calls are needed. */
-export const defaultAggregators = [
-  AggId.LIFI,
-  AggId.SOCKET,
-  AggId.UNIZEN,
-  AggId.RANGO,
-  AggId.SQUID,
-];
+export const defaultAggregators = [AggId.LIFI, AggId.BTR_DEX];
 
 /**
  * Represents the Ethereum zero address.

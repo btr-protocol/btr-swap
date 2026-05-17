@@ -28,7 +28,9 @@ const createConfig = (
 ): AggregatorConfig => {
   const apiRoot = envApiRoot(`${aggId}_API_BASE_URL`, fallbackApiRoot);
   const apiKey = envOrNull(`${aggId}_API_KEY`) || apiKeyDefault;
-  const integrator = envOrNull(`${aggId}_INTEGRATOR`) || integratorDefault || "astrolab";
+  // Phase 43: default integrator is "btr" (lowercase) across all aggregators.
+  // Override via env `<AGGID>_INTEGRATOR=...` or codepath default.
+  const integrator = envOrNull(`${aggId}_INTEGRATOR`) || integratorDefault || "btr";
   const referrer = envOrNull(`${aggId}_REFERRER`) || referrerDefault;
   const feeBps = envInt(`${aggId}_FEE_BPS`, feeBpsDefault);
   return { apiRoot, apiKey, integrator, referrer, feeBps };
@@ -43,33 +45,8 @@ const c: Record<Id, AggregatorConfig> = {} as Record<Id, AggregatorConfig>;
 type ConfigTuple = readonly [id: Id, apiRoot: string, feeBps?: number];
 
 const configs: ConfigTuple[] = [
-  // Meta-Aggregators
+  // Meta-Aggregator
   [Id.LIFI, "li.quest/v1"],
-  [Id.SOCKET, "api.socket.tech/v2"],
-  [Id.SQUID, "v2.api.squidrouter.com/v2"],
-  [Id.RANGO, "api.rango.exchange/basic"],
-  [Id.UNIZEN, "api.unizen.io"],
-  [Id.ROCKETX, "api.rocketx.exchange/v1"],
-
-  // Passive Liquidity Aggregators
-  [Id.ONE_INCH, "api.1inch.dev/swap/v6.0"],
-  [Id.ZERO_X, "api.0x.org"],
-  [Id.PARASWAP, "api.paraswap.io"],
-  [Id.ODOS, "api.odos.xyz"],
-  [Id.KYBERSWAP, "aggregator-api.kyberswap.com"],
-  [Id.OPENOCEAN, "ethapi.openocean.finance/v2"],
-  [Id.FIREBIRD, "router.firebird.finance/aggregator/v2"],
-  [Id.BEBOP, "api.bebop.xyz"],
-
-  // JIT / Intent-Based / RFQ
-  [Id.DEBRIDGE, "api.debridge.io"],
-  [Id.COWSWAP, "api.cow.fi"],
-  [Id.HASHFLOW, "api.hashflow.com"],
-  [Id.AIRSWAP, "api.airswap.io"],
-  [Id.ONE_INCH_FUSION, "api.1inch.dev/swap/v6.0"],
-  [Id.PARASWAP_DELTA, "api.paraswap.io"],
-  [Id.UNIZEN_GASLESS, "api.zcx.com/trade/v1"],
-
   // On-chain aggregators (no external HTTP API) -`apiRoot` is a placeholder.
   // RPC endpoints are resolved per-chain via env vars (e.g. `BTR_DEX_RPC_1`).
   [Id.BTR_DEX, "onchain.btr.supply/btrdex"],

@@ -20,7 +20,7 @@ export abstract class BaseAggregator {
   public readonly apiKey: string;
   /** Base URL for the aggregator's API. Read from config. */
   public readonly baseApiUrl: string;
-  /** Default integrator identifier used in API requests. Read from config or defaults to "astrolab". */
+  /** Default integrator identifier used in API requests. Read from config or defaults to "btr". */
   public readonly integrator: string;
   /** Optional referrer address for fee sharing or tracking. Read from config. */
   public readonly referrer?: string | `0x${string}`;
@@ -57,7 +57,7 @@ export abstract class BaseAggregator {
     // Initialize properties from config
     this.baseApiUrl = aggregatorConfig.apiRoot;
     this.apiKey = aggregatorConfig.apiKey ?? "";
-    this.integrator = aggregatorConfig.integrator ?? "astrolab";
+    this.integrator = aggregatorConfig.integrator ?? "btr";
     this.referrer = String(aggregatorConfig.referrer ?? "");
     this.feeBps = aggregatorConfig.feeBps ?? 0;
   }
@@ -285,8 +285,7 @@ export abstract class UnimplementedAggregator extends BaseAggregator {
 }
 
 /**
- * Abstract base class for JIT (Just-In-Time) / RFQ (Request-for-Quote) based aggregators
- * (e.g., CowSwap, Hashflow, AirSwap).
+ * Abstract base class for JIT (Just-In-Time) / RFQ (Request-for-Quote) based aggregators.
  * These typically involve off-chain order matching and may require specific signature handling.
  * Currently extends `UnimplementedAggregator` as full JIT support (signatures, order management)
  * is not yet standardized in the base class.

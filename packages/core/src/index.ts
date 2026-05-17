@@ -9,16 +9,7 @@ import {
   nativeTokenAddress,
   zeroAddress,
 } from "./constants";
-import { firebirdAggregator } from "./Firebird";
-import { kyberSwapAggregator } from "./KyberSwap";
 import { lifiAggregator } from "./LiFi";
-import { odosAggregator } from "./Odos";
-import { oneInchAggregator } from "./OneInch";
-import { openOceanAggregator } from "./OpenOcean";
-import { paraSwapAggregator } from "./ParaSwap";
-import { rangoAggregator } from "./Rango";
-import { socketAggregator } from "./Socket";
-import { squidAggregator } from "./Squid";
 import {
   DisplayMode,
   IBtrSwapCliParams,
@@ -27,7 +18,6 @@ import {
   SerializationMode,
   AggId,
 } from "./types";
-import { unizenAggregator } from "./Unizen";
 import {
   compactTrs,
   getToken,
@@ -38,26 +28,11 @@ import {
   sortTrsByRate,
   toJSON,
 } from "./utils";
-import { zeroXAggregator } from "./ZeroX";
 
 /** Mapping of AggId to its corresponding Aggregator implementation instance. */
 export const aggregatorById: Partial<{ [key in AggId]: BaseAggregator }> = {
-  // Meta-Aggregators
-  [AggId.SQUID]: squidAggregator,
+  // Meta-Aggregator
   [AggId.LIFI]: lifiAggregator,
-  [AggId.SOCKET]: socketAggregator,
-  [AggId.RANGO]: rangoAggregator,
-  [AggId.UNIZEN]: unizenAggregator,
-
-  // Passive liquidity aggregators
-  [AggId.ONE_INCH]: oneInchAggregator,
-  [AggId.ZERO_X]: zeroXAggregator,
-  [AggId.PARASWAP]: paraSwapAggregator,
-  [AggId.KYBERSWAP]: kyberSwapAggregator,
-  [AggId.ODOS]: odosAggregator,
-  [AggId.FIREBIRD]: firebirdAggregator,
-  [AggId.OPENOCEAN]: openOceanAggregator,
-
   // On-chain (native BTR DEX router) -no external API
   [AggId.BTR_DEX]: btrDexAggregator,
 };
@@ -143,6 +118,7 @@ export const getBestTransactionRequest = async (
 // Export types and functions needed by the CLI and other consumers
 export {
   addresses,
+  aggregatorsWithContractCalls,
   compactTrs,
   config,
   defaultAggregators,
@@ -173,3 +149,38 @@ export type {
   Route,
   SwapMode,
 } from "./http";
+
+// LiFi Intents (OIF / Catalyst) — server-side only.
+export {
+  requestIntentQuote,
+  submitIntentOrder,
+  getIntentStatus,
+  getIntentChains,
+  getIntentRoutes,
+  getIntentApiBase,
+} from "./LiFi/intent";
+export type {
+  IBtrIntentParams,
+  IEIP712TypedData,
+  ILifiIntentInput,
+  ILifiIntentOutput,
+  ILifiIntentPayload,
+  ILifiIntentQuote,
+  ILifiIntentQuoteRequest,
+  ILifiIntentQuoteResponse,
+  ILifiIntentRequestMetadata,
+  ILifiIntentStatusParams,
+  ILifiIntentStatusResponse,
+  ILifiIntentSubmitRequest,
+  ILifiIntentSubmitResponse,
+  IMandateOutput,
+  IntentOrderStatus,
+  IntentOrderType,
+  IntentSettlerKind,
+  IntentSupportedType,
+  IntentSwapType,
+  IStandardOrder,
+  LifiIntentType,
+  Hex,
+  InteropAddress,
+} from "./LiFi/intent-types";

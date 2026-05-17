@@ -47,141 +47,36 @@ export const mockLifiTr: ITransactionRequestWithEstimate = {
   chainId: 1,
 };
 
-export const mockRangoTr: ITransactionRequestWithEstimate = {
+export const mockBtrDexTr: ITransactionRequestWithEstimate = {
   ...mockLifiTr,
-  aggId: AggId.RANGO,
-  params: { ...mockLifiTr.params, aggIds: [AggId.RANGO] },
-  globalEstimates: {
-    ...mockLifiTr.globalEstimates,
-    output: 990,
-    outputWei: 990000000000000000000n,
-    exchangeRate: 0.99,
-    gasCostUsd: 12,
-    feeCostUsd: 0.5,
-    gasCostWei: 120000n,
-    feeCostWei: 5000n,
-  },
-  latencyMs: 150,
-  to: "0xrouterRango",
-  data: "0xcalldataRango",
-  steps: [
-    {
-      ...mockLifiTr.steps[0],
-      protocol: { id: "1inch", name: "1inch" },
-      estimates: {
-        ...mockLifiTr.steps[0].estimates!,
-        output: 990,
-        outputWei: 990000000000000000000n,
-        exchangeRate: 0.99,
-        gasCostUsd: 12,
-        feeCostUsd: 0.5,
-        gasCostWei: 120000n,
-        feeCostWei: 5000n,
-      },
-    },
-  ],
-};
-
-export const mockSquidTr: ITransactionRequestWithEstimate = {
-  ...mockLifiTr,
-  aggId: AggId.SQUID,
-  params: { ...mockLifiTr.params, aggIds: [AggId.SQUID] },
-  globalEstimates: {
-    ...mockLifiTr.globalEstimates,
-    output: 980,
-    outputWei: 980000000000000000000n,
-    exchangeRate: 0.98,
-    gasCostUsd: 8,
-    feeCostUsd: 2,
-    gasCostWei: 80000n,
-    feeCostWei: 20000n,
-  },
-  latencyMs: 200,
-  to: "0xrouterSquid",
-  data: "0xcalldataSquid",
-  steps: [
-    {
-      ...mockLifiTr.steps[0],
-      protocol: { id: "balancer", name: "Balancer" },
-      estimates: {
-        ...mockLifiTr.steps[0].estimates!,
-        output: 980,
-        outputWei: 980000000000000000000n,
-        exchangeRate: 0.98,
-        gasCostUsd: 8,
-        feeCostUsd: 2,
-        gasCostWei: 80000n,
-        feeCostWei: 20000n,
-      },
-    },
-  ],
-};
-
-export const mockUnizenTr: ITransactionRequestWithEstimate = {
-  ...mockLifiTr,
-  aggId: AggId.UNIZEN,
-  params: { ...mockLifiTr.params, aggIds: [AggId.UNIZEN] },
+  aggId: AggId.BTR_DEX,
+  params: { ...mockLifiTr.params, aggIds: [AggId.BTR_DEX] },
   globalEstimates: {
     ...mockLifiTr.globalEstimates,
     output: 1010,
     outputWei: 1010000000000000000000n,
     exchangeRate: 1.01,
-    gasCostUsd: 15,
+    gasCostUsd: 8,
     feeCostUsd: 0,
-    gasCostWei: 150000n,
+    gasCostWei: 80000n,
     feeCostWei: 0n,
   },
   latencyMs: 80,
-  to: "0xrouterUnizen",
-  data: "0xcalldataUnizen",
+  to: "0xrouterBtrDex",
+  data: "0xcalldataBtrDex",
   steps: [
     {
       ...mockLifiTr.steps[0],
-      protocol: { id: "curve", name: "Curve" },
+      protocol: { id: "btr-dex", name: "BTR DEX" },
       estimates: {
         ...mockLifiTr.steps[0].estimates!,
         output: 1010,
         outputWei: 1010000000000000000000n,
         exchangeRate: 1.01,
-        gasCostUsd: 15,
+        gasCostUsd: 8,
         feeCostUsd: 0,
-        gasCostWei: 150000n,
+        gasCostWei: 80000n,
         feeCostWei: 0n,
-      },
-    },
-  ],
-};
-
-export const mockSocketTr: ITransactionRequestWithEstimate = {
-  ...mockLifiTr,
-  aggId: AggId.SOCKET,
-  params: { ...mockLifiTr.params, aggIds: [AggId.SOCKET] },
-  globalEstimates: {
-    ...mockLifiTr.globalEstimates,
-    output: 995,
-    outputWei: 995000000000000000000n,
-    exchangeRate: 0.995,
-    gasCostUsd: 9,
-    feeCostUsd: 1.5,
-    gasCostWei: 90000n,
-    feeCostWei: 15000n,
-  },
-  latencyMs: 120,
-  to: "0xrouterSocket",
-  data: "0xcalldataSocket",
-  steps: [
-    {
-      ...mockLifiTr.steps[0],
-      protocol: { id: "sushiswap", name: "Sushiswap" },
-      estimates: {
-        ...mockLifiTr.steps[0].estimates!,
-        output: 995,
-        outputWei: 995000000000000000000n,
-        exchangeRate: 0.995,
-        gasCostUsd: 9,
-        feeCostUsd: 1.5,
-        gasCostWei: 90000n,
-        feeCostWei: 15000n,
       },
     },
   ],

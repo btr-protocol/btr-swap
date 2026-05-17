@@ -2,7 +2,7 @@ import { TESTED_CHAIN_IDS, generateFuzzCategories, runSwapTests } from "../utils
 
 import { AggId } from "@/types";
 
-const aggregators = [AggId.LIFI, AggId.SOCKET, AggId.SQUID, AggId.RANGO, AggId.UNIZEN];
+const aggregators = [AggId.LIFI];
 const MAX_TEST_CASES = 5; // to avoid overloading the APIs
 
 describe("Meta-Aggregator Fuzzing Tests", () => {

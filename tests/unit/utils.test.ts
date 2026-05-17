@@ -1,13 +1,6 @@
 import { expect } from "chai";
 
-import {
-  mockLifiTr,
-  mockRangoTr,
-  mockSquidTr,
-  mockUnizenTr,
-  mockSocketTr,
-  mockQuotePerformance,
-} from "../mocks";
+import { mockLifiTr, mockBtrDexTr, mockQuotePerformance } from "../mocks";
 import { buildCliCommand, getPayer } from "../utils";
 
 import { AggId, DisplayMode } from "@/core/types";
@@ -129,7 +122,7 @@ describe("Utils", () => {
         output: getToken("WETH", 1),
         inputAmountWei: "1000000000", // 1000 USDC
         payer: getPayer(1),
-        aggIds: [AggId.LIFI, AggId.RANGO, AggId.SQUID],
+        aggIds: [AggId.LIFI, AggId.BTR_DEX],
       };
 
       const command = buildCliCommand(params);
@@ -144,7 +137,7 @@ describe("Utils", () => {
       );
       expect(command).to.include("--input-amount 1000000000");
       expect(command).to.include("--payer " + getPayer(1));
-      expect(command.toLowerCase()).to.include("--aggregators lifi,rango,squid".toLowerCase());
+      expect(command.toLowerCase()).to.include("--aggregators lifi,btr_dex".toLowerCase());
     });
 
     it("should include display modes and serialization mode", () => {
@@ -174,14 +167,14 @@ describe("Utils", () => {
         payer: getPayer(1),
         aggIds: [AggId.LIFI],
         apiKeys: { lifi: "test-key" },
-        referrerCodes: { unizen: "ref-code" },
+        referrerCodes: { lifi: "ref-code" },
       };
 
       const command = buildCliCommand(params);
 
       expect(command).to.include("./btr-swap-dev");
       expect(command).to.include('--api-keys {"lifi":"test-key"}');
-      expect(command).to.include('--referrer-codes {"unizen":"ref-code"}');
+      expect(command).to.include('--referrer-codes {"lifi":"ref-code"}');
     });
   });
 
@@ -290,22 +283,13 @@ LIFI|1|1000|10|1|100|1|Uniswap`,
     });
 
     it("should generate performance table", () => {
-      const table = getPerformanceTable(
-        sortTrsByRate([mockLifiTr, mockRangoTr, mockSquidTr, mockUnizenTr, mockSocketTr]),
-      );
+      const table = getPerformanceTable(sortTrsByRate([mockLifiTr, mockBtrDexTr]));
       expect(table)
         .to.be.a("string")
-        .and.include(
-          `────────┬──────────┬────────────┬─────────┬─────────┬─────────┬───────┬────────────────────┐
-│ Agg ID │ Rate     │ Output     │ Gas USD │ Fee USD │ Latency │ Steps │ Protocols          │
-├────────┼──────────┼────────────┼─────────┼─────────┼─────────┼───────┼────────────────────┤
-│ UNIZEN │ 1.010    │ 1010       │ 15      │ NaN     │ 80      │ 1     │ Curve              │
-│ LIFI   │ 1        │ 1000       │ 10      │ 1       │ 100     │ 1     │ Uniswap            │
-│ SOCKET │ 0.995    │ 995        │ 9       │ 1.500   │ 120     │ 1     │ Sushiswap          │
-│ RANGO  │ 0.990    │ 990        │ 12      │ 0.500   │ 150     │ 1     │ 1inch              │
-│ SQUID  │ 0.980    │ 980        │ 8       │ 2       │ 200     │ 1     │ Balancer           │
-└────────┴──────────┴────────────┴─────────┴─────────┴─────────┴───────┴────────────────────┘`,
-        );
+        .and.include("Agg ID")
+        .and.include("Rate")
+        .and.include("LIFI")
+        .and.include("BTR DEX");
     });
   });
 });

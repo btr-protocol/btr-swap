@@ -38,36 +38,17 @@ We welcome issues for bugs or feature requests, and pull requests to improve the
 
 ## Supported Aggregators
 
-### Meta-Aggregators (cross-chain capable)
+As of v2.0.0 (Phase 43), `@btr-supply/swap` is intentionally minimal: only
+Li.Fi (external meta-aggregator) and the native BTR DEX router are supported.
+15 legacy aggregators were removed in v2.0.0 — see CHANGELOG for details.
+
+### Meta-Aggregator (cross-chain capable)
 
 - [Li.Fi](https://li.fi/) `stable` `tested`
-- [Squid Router](https://www.squidrouter.com/) `stable` `tested`
-- [Socket](https://socket.tech/) `stable` `tested`
-- [Rango](https://rango.exchange/) `stable` `tested`
-- [Unizen](https://unizen.io/) `stable` `tested`
-- [RocketX](https://www.rocketx.exchange/) `planned`
 
-### Passive Liquidity Aggregators
+### On-chain (native, no external API)
 
-- [1inch](https://1inch.io/) `stable` `tested`
-- [0x](https://0x.org/) `stable` `tested`
-- [ParaSwap](https://www.paraswap.io/) `stable` `tested`
-- [Odos](https://odos.xyz/) `stable` `tested`
-- [KyberSwap](https://kyberswap.com/) `stable` `tested`
-- [OpenOcean](https://openocean.finance/) `stable` `tested`
-- [Firebird](https://firebird.finance/) `stable` `tested`
-
-### JIT / Intent-Based / RFQ
-
-> Offer MEV protection, gasless swaps, and off-chain liquidity with specific handling requirements
-
-- [CowSwap](https://swap.cow.fi/) `planned`
-- [Hashflow](https://www.hashflow.com/) `planned`
-- [1inch Fusion](https://fusion.1inch.io/) `planned`
-- [ParaSwap Delta](https://www.paraswap.io/) `planned`
-- [Bebop](https://bebop.xyz/) `planned`
-- [DeBridge](https://debridge.finance/) `planned`
-- [AirSwap](https://www.airswap.io/) `disabled`
+- BTR DEX router (`AggId.BTR_DEX`) `stable` `tested`
 
 ## Installation
 
@@ -204,9 +185,9 @@ btr-swap quote \
   --output 1:0x...:DAI:18 \
   --input-amount 5e17 \
   --payer 0x... \
-  --aggregators RANGO,LIFI \
+  --aggregators LIFI,BTR_DEX \
   --integrator-ids '{"LIFI":"integrator-id"}' \
-  --api-keys '{"RANGO":"api-key"}' \
+  --api-keys '{"LIFI":"api-key"}' \
   --serialization TABLE
 
 # Get help

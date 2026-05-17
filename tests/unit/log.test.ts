@@ -49,7 +49,7 @@ const mockTrs: ITransactionRequestWithEstimate[] = [
       feeCostWei: BigInt("1000000000000000"),
     },
     latencyMs: 1200,
-    aggId: AggId.SOCKET,
+    aggId: AggId.BTR_DEX,
     from: "0xpayer",
     to: "0xtarget",
     data: "0xdata2",

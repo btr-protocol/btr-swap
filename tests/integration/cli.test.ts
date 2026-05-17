@@ -16,7 +16,7 @@ const baseParams = <IBtrSwapCliParams>{
 
 const tableMultiRankParams = <IBtrSwapCliParams>{
   ...baseParams,
-  aggIds: [AggId.SOCKET, AggId.SQUID, AggId.LIFI, AggId.UNIZEN],
+  aggIds: [AggId.LIFI, AggId.BTR_DEX],
   displayModes: [DisplayMode.RANK, DisplayMode.BEST_COMPACT],
   serializationMode: SerializationMode.TABLE,
   verbose: 3, // Increased verbosity from 2 to 3
@@ -24,7 +24,7 @@ const tableMultiRankParams = <IBtrSwapCliParams>{
 
 const bestCompactCsvParams = <IBtrSwapCliParams>{
   ...baseParams,
-  aggIds: [AggId.SOCKET, AggId.SQUID],
+  aggIds: [AggId.LIFI],
   displayModes: [DisplayMode.BEST_COMPACT],
   serializationMode: SerializationMode.CSV,
   verbose: 0, // Silent
@@ -32,7 +32,7 @@ const bestCompactCsvParams = <IBtrSwapCliParams>{
 
 const envFileTestParams = <IBtrSwapCliParams>{
   ...baseParams,
-  aggIds: [AggId.LIFI, AggId.SOCKET],
+  aggIds: [AggId.LIFI, AggId.BTR_DEX],
   displayModes: [DisplayMode.RANK],
   serializationMode: SerializationMode.TABLE,
   envFile: "/Users/derpa/Work/btr/contracts/evm/.env", // Use specified .env file

@@ -5,34 +5,8 @@ export interface Stringifiable {
 
 /** Enumeration of supported DEX aggregators. */
 export enum AggId {
-  // Meta-Aggregators (Order matches src/index.ts imports)
+  // Meta-Aggregator (only external aggregator supported post Phase 43)
   LIFI = "LIFI",
-  SOCKET = "SOCKET",
-  SQUID = "SQUID",
-  RANGO = "RANGO",
-  UNIZEN = "UNIZEN",
-  ROCKETX = "ROCKETX", // Currently commented out in src/index.ts
-
-  // Passive Liquidity Aggregators (Order matches src/index.ts imports)
-  ONE_INCH = "ONE_INCH",
-  ZERO_X = "ZERO_X",
-  PARASWAP = "PARASWAP",
-  ODOS = "ODOS",
-  KYBERSWAP = "KYBERSWAP",
-  OPENOCEAN = "OPENOCEAN",
-  FIREBIRD = "FIREBIRD",
-  BEBOP = "BEBOP", // Currently commented out in src/index.ts
-
-  // JIT / Intent-Based / RFQ (Order partially matches src/index.ts commented imports)
-  // TODO: Implement full support for gasless/intent types
-  DEBRIDGE = "DEBRIDGE",
-  COWSWAP = "COWSWAP",
-  HASHFLOW = "HASHFLOW",
-  AIRSWAP = "AIRSWAP",
-  ONE_INCH_FUSION = "ONE_INCH_FUSION",
-  PARASWAP_DELTA = "PARASWAP_DELTA",
-  UNIZEN_GASLESS = "UNIZEN_GASLESS",
-
   // On-chain (no external API) -native BTR DEX router
   BTR_DEX = "BTR_DEX",
 }
@@ -221,8 +195,7 @@ export interface ISwapStep {
 
 /** Discriminator for route execution model.
  * - `atomic`: traditional swap/bridge calldata signed and broadcast by the user.
- * - `intent`: gasless / off-chain signed order (e.g. CoW, 1inch Fusion, LiFi Intents,
- *   Unizen Cross-chain Intent, Squid X-Chain v2 intents, Rango intents).
+ * - `intent`: gasless / off-chain signed order (e.g. LiFi Intents / Catalyst).
  */
 export type RouteKind = "atomic" | "intent";
 
