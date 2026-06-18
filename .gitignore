@@ -120,3 +120,5 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.*
 
 # Copied files (never commit these)
 packages/core/README.md
+
+.claude/
