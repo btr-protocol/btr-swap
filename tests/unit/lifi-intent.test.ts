@@ -4,7 +4,7 @@
  * Goal: zero network calls. We only validate that:
  *   1. The intent module exports the documented entry points.
  *   2. The request/response types are structurally compatible with the
- *      authoritative spec (/tmp/btr_lifi_intent_spec.md §2).
+ *      authoritative Li.Fi intent spec.
  *   3. The base URL resolver honours `LIFI_INTENT_API_BASE_URL`.
  *   4. `getIntentStatus` rejects empty params synchronously.
  */
